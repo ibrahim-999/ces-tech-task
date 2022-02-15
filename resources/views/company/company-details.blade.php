@@ -19,6 +19,7 @@
                             <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Email</th>
+                            <th>Image</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -30,6 +31,14 @@
                             <td>{{ $employee->first_name }}</td>
                             <td>{{ $employee->last_name }}</td>
                             <td>{{ $employee->email }}</td>
+                            <td>
+                                <?php $employee_image_path = "images/".$employee->image; ?>
+                            @if(!empty($employee->image)&& file_exists($employee_image_path))
+                                <img  style="width: 100px;"  src="{{asset('images/'.$employee->image)}}">
+                            @else
+                                <img  style="width: 100px;"  src="{{asset('images/no-image.png')}}">
+                            @endif
+                            </td>
                             <td>
                                 <a href="/employees/{{$employee->id}}/edit" class="btn btn-primary">Edit</a>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault();

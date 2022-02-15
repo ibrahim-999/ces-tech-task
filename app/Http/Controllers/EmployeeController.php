@@ -51,7 +51,27 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $id = $request->input('company_id');
-        Employee::create($request->all());
+        $data = $request->validate([
+            'image' => 'required:mimes:jpg,png,jpeg',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'company_id' => 'exists:companies,id',
+
+        ]);
+        $newImageName = time() . '.' . $request->name . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+        
+        Employee::create([
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'image' => $newImageName,
+            'company_id' => $data['company_id']
+
+        ]);
 
         return redirect('/companies/'.$id);
     }

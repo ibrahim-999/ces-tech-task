@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form action="/employees" method="post">
+                    <form action="/employees" method="post"enctype="multipart/form-data">
                         @csrf
 
                         <div class="row">
@@ -31,6 +31,14 @@
                                 <div class="form-group">
                                     <label for="">Email</label>
                                     <input type="email" name="email" class="form-control" required>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Image</label>
+                                    <input type="file" name="image" class="form-control" required>
                                 </div>
                             </div>
 
