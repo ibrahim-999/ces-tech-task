@@ -1,4 +1,4 @@
-# Employee Management 
+# Company Employee Management 
 
 ## Description
 This help companies store and manage list of all their employee.
