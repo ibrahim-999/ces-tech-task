@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class CompanyController extends Controller
 {
@@ -49,10 +52,33 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        Company::create($request->all());
+        $data = $request->validate([
+            'image' => 'required:mimes:jpg,png,jpeg',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'location' => 'required|string',
+            'phone' => 'required|string',
+            'user_id' => 'exists:users,id',
+
+        ]);
+        
+
+        $newImageName = time() . '.' . $request->name . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+        
+        Company::create([
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'location' => $data['location'],
+            'image' => $newImageName,
+            'user_id' => $data['user_id']
+
+        ]);
 
         return redirect('/companies');
     }
+    
 
     /**
      * Display the specified resource.

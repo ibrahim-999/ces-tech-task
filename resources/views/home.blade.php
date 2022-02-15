@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard
-                    <a href="/companies/create" class="btn btn-success float-right">Companies</a>
+                    <a href="/companies" class="btn btn-success float-right">Companies</a>
                 </div>
                 <div class="card-body">
                         @if(count($companies) > 0)
@@ -19,8 +19,14 @@
     
                                 <ul class="list-group">
                                     <li class="list-group-item">
+                                        <img src="{{ asset('images/'. $company->image) }}" alt="" class=" 
+                                        width: 50px; 
+                                        height: 50px; 
+                                        display: block; 
+                                        text-indent: -9999px;"/>
                                         <h4>{{ $company->name }}</h4>
-                                        <small><strong>Location :</strong> {{ $company->location }}</small>
+                                        <small><strong>Location :</strong> {{ $company->location }}</small></br>
+                                        <small><strong>Phone :</strong> {{ $company->phone }}</small>
                                         <span class="float-right">
                                             <a href="/companies/{{ $company->id }}" class="btn btn-primary">Details</a>
                                         </span>

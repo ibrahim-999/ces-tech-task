@@ -14,12 +14,12 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('phone');
-            $table->integer('company_id');
+            $table->foreignIdFor(\App\Company::class, 'company_id');
             $table->timestamps();
         });
     }

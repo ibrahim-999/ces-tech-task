@@ -31,6 +31,13 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="">Image</label>
+                                    <input type="file" name="image" class="form-control"  value="{{ $company->image }}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="">Phone</label>
                                     <input type="number" name="phone" class="form-control" value="{{ $company->phone }}" required>
                                 </div>
