@@ -6,9 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Company's Employees
-                    <a href="/employees/{{ $company->id }}/create" class="btn btn-success float-right">Add Employee</a>
+                    <span class="float-right">
+                        <a href="/employees/{{ $company->id }}/create" class="btn btn-success ">Add Employee</a>
+                    <a href="/companies" class="btn btn-primary ">Back</a>
+                    </span>
                 </div>
-
 
                 <div class="card-body">
                     @if(count($employees) > 0)
@@ -42,7 +44,7 @@
                             <td>
                                 <a href="/employees/{{$employee->id}}/edit" class="btn btn-primary">Edit</a>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault();
-                                    document.getElementById('delete-employee').submit();">Remove</a>
+                                    document.getElementById('delete-employee').submit();">s</a>
 
                                 <form id="delete-employee" action="/employees/{{ $employee->id }}" method="POST">
                                     @csrf

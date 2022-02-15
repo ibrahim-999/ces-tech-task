@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Create new company</div>
+                <div class="card-header">Create new company
+                    <a href="/companies" class="btn btn-primary float-right">Back</a>
+                </div>
 
                 <div class="card-body">
 
@@ -22,13 +24,6 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="">Image</label>
                                     <input type="file" name="image" class="form-control" required>
                                 </div>
@@ -36,15 +31,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="number" name="phone" class="form-control" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Location</label>
-                                    <input type="text" name="location" class="form-control" required>
+                                    <label for="">Address</label>
+                                    <input type="text" name="address" class="form-control" required>
                                 </div>
                             </div>
 

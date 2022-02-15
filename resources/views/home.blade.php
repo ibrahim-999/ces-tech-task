@@ -25,8 +25,7 @@
                                         display: block; 
                                         text-indent: -9999px;"/>
                                         <h4>{{ $company->name }}</h4>
-                                        <small><strong>Location :</strong> {{ $company->location }}</small></br>
-                                        <small><strong>Phone :</strong> {{ $company->phone }}</small>
+                                        <small><strong>Address :</strong> {{ $company->address }}</small></br>
                                         <span class="float-right">
                                             <a href="/companies/{{ $company->id }}" class="btn btn-primary">Details</a>
                                         </span>

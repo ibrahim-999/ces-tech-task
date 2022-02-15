@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Employee Management System
+                    Company Management System
                 </div>
             </div>
         </div>

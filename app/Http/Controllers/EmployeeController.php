@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
-use App\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rules\Password;
+use App\Notifications\WelcomeEmail;
 
 class EmployeeController extends Controller
 {
@@ -51,29 +52,39 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $id = $request->input('company_id');
+
         $data = $request->validate([
-            'image' => 'required:mimes:jpg,png,jpeg',
+           
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'required|email',
-            'phone' => 'required|string',
             'company_id' => 'exists:companies,id',
+            'image' => 'required:mimes:jpg,png,jpeg',
+            'password' => [
+                'required',
+               Password::min(8)->mixedCase()->numbers()->symbols()
+           ]
 
         ]);
         $newImageName = time() . '.' . $request->name . '.' . $request->image->extension();
         $request->image->move(public_path('images'), $newImageName);
         
-        Employee::create([
+        $employee = Employee::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
-            'phone' => $data['phone'],
             'email' => $data['email'],
+            'password' =>bcrypt($data['password']),
             'image' => $newImageName,
             'company_id' => $data['company_id']
-
         ]);
 
+        $employee->notify(new WelcomeEmail());
+
+       
+        
         return redirect('/companies/'.$id);
+
+        return $employee;
     }
 
     /**

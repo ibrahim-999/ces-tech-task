@@ -23,8 +23,7 @@
                                 <li class="list-group-item">
                                     <img src="{{ asset('images/'. $company->image) }}" alt="" /></br>
                                     <h4>{{ $company->name }}</h4>
-                                    <small>Location : {{ $company->location }}</small></br>
-                                    <small>Phone : {{ $company->phone }}</small></br>
+                                    <small>Address : {{ $company->address }}</small></br>
                                     <span class="float-right">
                                         <a href="/companies/{{ $company->id }}/edit" class="btn btn-primary">Edit</a>
                                         <a href="#" class="btn btn-danger" onclick="event.preventDefault();

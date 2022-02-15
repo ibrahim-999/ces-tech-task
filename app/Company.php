@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     /** Attribute to be mass assigned */
-    protected $fillable = ['name', 'email', 'phone', 'location', 'user_id','image'];
+    protected $fillable = ['name', 'address', 'user_id','image'];
 
     /** Relationships */
     public function users()

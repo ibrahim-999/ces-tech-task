@@ -44,10 +44,13 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="number" name="phone" class="form-control" required>
+                                    <label for="">Password</label>
+                                    <input type="password" name="password" class="form-control" required>
                                 </div>
                             </div>
+
+                            
+
 
                             <input type="hidden" name="company_id" value="{{ $company_id }}">
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Laravel\Ui\Presets\React;
 
 class CompanyController extends Controller
 {
@@ -27,10 +28,10 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::latest()->get();
-        
+        $user = $request->user();
+        $companies = Company::where('user_id', $user->id)->latest()->get();
         return view('company.company')->with('companies', $companies);
     }
 
@@ -53,11 +54,9 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'image' => 'required:mimes:jpg,png,jpeg',
             'name' => 'required|string|max:255',
-            'email' => 'required|email',
-            'location' => 'required|string',
-            'phone' => 'required|string',
+            'address' => 'required|string',
+            'image' => 'required:mimes:jpg,png,jpeg',
             'user_id' => 'exists:users,id',
 
         ]);
@@ -68,9 +67,7 @@ class CompanyController extends Controller
         
         Company::create([
             'name' => $data['name'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'location' => $data['location'],
+            'address' => $data['address'],
             'image' => $newImageName,
             'user_id' => $data['user_id']
 
