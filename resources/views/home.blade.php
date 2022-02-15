@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Dashboard
+                    <a href="/companies/create" class="btn btn-success float-right">Companies</a>
+                </div>
                 <div class="card-body">
                         @if(count($companies) > 0)
                         
