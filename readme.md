@@ -1,21 +1,22 @@
 # Employee Management 
-[![Build Status](https://travis-ci.org/12march/employee-management-test.svg?branch=master)](https://travis-ci.org/12march/employee-management-test)
 
+## Description
 This help companies store and manage list of all their employee.
 
-> This project will still be extended in the future. This is just complete the test requirement
+> This project could be extended in the future. This is just complete the tech task.
 
 ## Prerequisite
-- PHP 7
-- Composer
-- A database system
+- PHP 8
+- Laravel 8
+- Mysql for database
+- tmplate engine blade
 
 ## Installation
 
 ### Step 1.
 - Begin by cloning this repository to your machine 
 ```
-git clone https://github.com/12march/employee-management-test-laravel.git
+git clone git@github.com:ibrahim-999/ces-tech-task.git
 ```
 
 - Install dependencies
@@ -34,12 +35,12 @@ php artisan key:generate
 ```
 
 ### Step 2
-- Next, create a new database and reference its name and username/password in the projects .env file. Below the database name is "emp_mngt"
+- Next, create a new database and reference its name and username/password in the projects .env file. Below the database name is "database_name"
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=emp_mngt
+DB_DATABASE=database_name
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -50,6 +51,19 @@ php artisan migrate
 ```
 
 ### Step 3
+- before start the serve you need to adjust your mailtrap vars
+```
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=587
+MAIL_USERNAME=user name from mailtrap
+MAIL_PASSWORD=password from mailtrap
+MAIL_ENCRYPTION=tls
+MAIL_FROM_NAME="${APP_NAME}"
+
+```
+
+### Step 4
 - To start the server, run the command below
 ```shell
 $ php artisan serve
@@ -74,7 +88,9 @@ $ php artisan serve
 - Company can add an employee
 - Company can edit employees details
 - Company can delete 
+- notify for registration
+- notify for create employee
 
 
 ## Author
-- Emmanuel Okeke
+- ibrahim khalaf
