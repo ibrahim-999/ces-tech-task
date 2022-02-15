@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form action="/employees/{{ $employee->id }}" method="post">
+                    <form action="/employees/{{ $employee->id }}" method="post" enctype="multipart/form-data" >
                         @csrf
 
                         <input type="hidden" name="_method" value="PATCH">
@@ -38,8 +38,15 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="number" name="phone" class="form-control" value="{{ $employee->phone }}" required>
+                                    <label for="">Image</label>
+                                    <input type="file" name="image" class="form-control"  value="{{ $employee->image }}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="">Password</label>
+                                    <input type="password" name="password" class="form-control" value="{{ $employee->password }}" required>
                                 </div>
                             </div>
 

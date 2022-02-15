@@ -9,7 +9,7 @@
 
                 <div class="card-body">
 
-                    <form action="/companies/{{ $company->id }}" method="post">
+                    <form action="/companies/{{ $company->id }}" method="post" enctype="multipart/form-data" >
                         @csrf
 
                         <input type="hidden" name="_method" value="PATCH">
@@ -24,13 +24,6 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Email</label>
-                                    <input type="text" name="email" class="form-control" value="{{ $company->email }}" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="">Image</label>
                                     <input type="file" name="image" class="form-control"  value="{{ $company->image }}" required>
                                 </div>
@@ -38,15 +31,8 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="">Phone</label>
-                                    <input type="number" name="phone" class="form-control" value="{{ $company->phone }}" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="">Location</label>
-                                    <input type="text" name="location" class="form-control" value="{{ $company->location }}" required>
+                                    <label for=""><Address></Address></label>
+                                    <input type="text" name="address" class="form-control" value="{{ $company->address }}" required>
                                 </div>
                             </div>
 

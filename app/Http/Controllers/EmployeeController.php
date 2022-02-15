@@ -123,9 +123,26 @@ class EmployeeController extends Controller
         $company_id = $request->input('company_id');
 
         $employee = Employee::find($id);
-        $employee->update($request->all());
+        $data = $request->validate([
+           
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email',
+            'company_id' => 'exists:companies,id',
+            'image' => 'required:mimes:jpg,png,jpeg',
+            'password' => [
+                'required',
+               Password::min(8)->mixedCase()->numbers()->symbols()
+           ]
 
-        return redirect('/home');
+        ]);
+        $newImageName = time() . '.' . $request->name . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+        
+
+        $employee->update($data);
+
+        return redirect('/companies/'.$id);
     }
 
     /**

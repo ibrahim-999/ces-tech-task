@@ -114,7 +114,20 @@ class CompanyController extends Controller
     public function update(Request $request, $id)
     {
         $company = Company::find($id);
-        $company->update($request->all());
+        $data = $request->validate([
+            'name' => 'required|string|max:255',
+            'address' => 'required|string',
+            'image' => 'required:mimes:jpg,png,jpeg',
+            'user_id' => 'exists:users,id',
+
+        ]);
+        
+
+        $newImageName = time() . '.' . $request->name . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $newImageName);
+        
+
+        $company->update($data);
 
         return redirect('/companies/'.$id);
     }
