@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\DataTables\CompanyDataTable;
+use App\DataTables\EmployeeDataTable;
 use App\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Laravel\Ui\Presets\React;
+use DataTables;
 
 class CompanyController extends Controller
 {
@@ -28,11 +31,28 @@ class CompanyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, CompanyDataTable $dataTable)
     {
         $user = $request->user();
-        $companies = Company::where('user_id', $user->id)->latest()->get();
-        return view('company.company')->with('companies', $companies);
+        if ($request->ajax()) {
+            $data = Company::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+       
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-info btn-sm">View</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">Edit</a>';
+                           $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
+         
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        return $dataTable->render('company.company');
+        //
+        //$companies = Company::where('user_id', $user->id)->latest()->get();
+        //return view('company.company')->with('companies', $companies);
     }
 
     /**
@@ -83,13 +103,15 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, EmployeeDataTable $dataTable)
     {
         $company = Company::find($id);
-        $employees = DB::table('employees')
+
+        /* $employees = DB::table('employees')
                     ->where('company_id', '=', $id)->get();
 
-        return view('company.company-details', compact('company', 'employees'));
+        return view('company.company-details', compact('company', 'employees')); */
+        return $dataTable->render('company.company-details');
     }
 
     /**

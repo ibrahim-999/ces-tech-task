@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\CompanyController;
 use App\Mail\WelcomeMail;
 
 Route::get('/', function () {
@@ -29,6 +30,8 @@ Route::resource('/companies', 'CompanyController');
 
 Route::resource('/employees', 'EmployeeController');
 Route::get('/employees/{id}/create', 'EmployeeController@add');
+
+Route::get('/company',[CompanyController::class,'index']);
 
 Route::get('/email', function() {
     Mail::to('ibrahimkhalaf99@gmail.com')->send(new WelcomeMail());
